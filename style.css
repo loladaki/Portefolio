@@ -1,0 +1,351 @@
+/* Reset básico para remover margens padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Empurra o logo para a esquerda e links para a direita */
+    align-items: center;
+    padding: 1rem 5%;
+    background-color: #1B263B;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Estilo do Logo e Nome */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+}
+
+.site-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #45a173;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Links de Navegação */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #979797;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #007bff; /* Cor ao passar o rato */
+}
+
+/* Destaque para o botão de contacto */
+.btn-contacto {
+    background-color: #74C69D;
+    color: white !important;
+    padding: 8px 18px;
+    border-radius: 5px;
+    transition: background 0.3s ease !important;
+}
+
+.btn-contacto:hover {
+    background-color: #0056b3 !important;
+}
+
+/* Responsividade para telemóveis */
+@media (max-width: 768px) {
+    .nav-links {
+        gap: 15px;
+        font-size: 0.9rem;
+    }
+    
+    .site-name {
+        display: none; /* Esconde o nome em ecrãs muito pequenos se preferires */
+    }
+}
+
+/* Secção Hero */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 80px 10%;
+    min-height: 80vh;
+    background-color: #fdfdfd; /* Fundo quase branco para destacar o texto */
+    gap: 50px;
+}
+
+.hero-content {
+    flex: 1;
+    max-width: 750px;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    color: #333;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+/* Cores da tua transição no texto */
+.highlight-green { color: #74C69D; }
+.highlight-blue { color: #007BFF; }
+
+.intro-text {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.bio-text, .hobbies-text {
+    font-size: 1.05rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* Botões */
+.hero-btns {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn-primary {
+    background-color: #007BFF;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: #007BFF;
+    padding: 12px 25px;
+    border: 2px solid #007BFF;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.2);
+}
+
+/* Parte Visual (Lado Direito) */
+.hero-visual {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.placeholder-art {
+    font-size: 10rem;
+    background: #f0f0f0;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    border: 4px dashed #74C69D; /* Borda verde ciência */
+}
+
+/* Responsividade */
+@media (max-width: 968px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 50px 5%;
+    }
+    .hero-btns {
+        justify-content: center;
+    }
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.gallery-section {
+    padding: 80px 10%;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.gallery-title {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.gallery-subtitle {
+    color: #74C69D; /* Verde ciência */
+    font-weight: 600;
+    margin-bottom: 50px;
+}
+
+/* Grelha das Fotos */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.photo-card {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.photo-card:hover {
+    transform: scale(1.03); /* Efeito fofo de zoom ao passar o rato */
+}
+
+.photo-wrapper {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.photo-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Faz a foto preencher o espaço sem distorcer */
+    transition: transform 0.5s ease;
+}
+
+.photo-card:hover img {
+    transform: scale(1.1);
+}
+
+.caption {
+    font-size: 0.95rem;
+    color: #555;
+    font-style: italic;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    .gallery-grid {
+        grid-template-columns: 1fr; /* Uma foto por linha em telemóveis */
+    }
+}
+
+.final-footer {
+    width: 100%;
+    background-color: #f8f9fa; /* Um cinza muito claro para separar do resto do site */
+    padding: 80px 0 40px 0; /* Padding em cima e em baixo, 0 nas laterais */
+    border-top: 1px solid #eee;
+    margin-top: 50px;
+}
+
+.footer-inner {
+    max-width: 1200px; /* Limita a largura do texto para não ficar demasiado esticado em ecrãs gigantes */
+    margin: 0 auto;    /* Centra o conteúdo */
+    padding: 0 5%;     /* Dá uma margem de segurança nas laterais em telemóveis */
+    text-align: center;
+}
+
+.inspirational-quotes {
+    margin-bottom: 40px;
+}
+
+.quote {
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 15px;
+    /* Aplicando o teu gradiente verde-azul no texto */
+    background: linear-gradient(90deg, #74C69D, #007BFF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.quote-sub {
+    font-size: 1.1rem;
+    color: #666;
+    font-style: italic;
+}
+
+.footer-divider {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #74C69D, #007BFF, transparent);
+    margin: 30px 0;
+    opacity: 0.3;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #999;
+    font-size: 0.9rem;
+}
+
+.social-links a {
+    color: #007BFF;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: #74C69D; /* Muda para verde ao passar o rato */
+}
+
+/* Ajuste para telemóveis */
+@media (max-width: 768px) {
+    .footer-bottom {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+    
+    .social-links a {
+        margin: 0 10px;
+    }
+    
+    .quote {
+        font-size: 1.3rem;
+    }
+}

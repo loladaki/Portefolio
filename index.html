@@ -7,7 +7,130 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>My Portefolio</h1>
+    <!DOCTYPE html>
+
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portefólio | O Teu Nome</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navegação -->
+
+  <header>
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src=".media/logo.png" alt="Logo" class="logo-img">
+            <span class="site-name">My transition journey</span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#inicio">Home</a></li>
+            <li><a href="#projectos">Projects</a></li>
+            <li><a href="#curriculo">Curriculum</a></li>
+            <li><a href="#contactos" class="btn-contacto">Contacts</a></li>
+        </ul>
+    </nav>
+  </header>
+
+  <!-- Introdução -->
+  <main>
+    
+    <section class="hero">
+    <div class="hero-content">
+        <h1>From <span class="highlight-green">Lab Tubes</span> to <span class="highlight-blue">Lines of Code</span></h1>
+        
+        <p class="intro-text">
+            This is my first serious project, designed to be a continuous learning journey. 
+            More than just a portfolio, this site and every project within it represent my 
+            commitment to mastering the digital world.
+        </p>
+
+        <p class="bio-text">
+            With a background in <strong>Biotechnology</strong>, I’ve recently discovered a deep passion 
+            for programming. I am currently pivoting my career to become a full-stack developer, 
+            focusing on <strong>HTML, CSS, JavaScript</strong>, and expanding into <strong>Python and SQL</strong>.
+        </p>
+
+        <p class="hobbies-text">
+            When I'm not coding, you'll find me looking up. I’m a nature enthusiast and a 
+            space lover who enjoys capturing the beauty of the night sky. You can explore 
+            some of my <strong>astrophotography</strong> right here on this site.
+        </p>
+
+        <div class="hero-btns">
+            <a href="#projectos" class="btn-primary">View My Projects</a>
+            <a href="#galeria" class="btn-secondary">See My Photos 🌌</a>
+        </div>
+    </div>
+    
+    <div class="hero-visual">
+        <div class="placeholder-art">🚀</div>
+    </div>
+</section>
+
+```
+<!-- Secção de imagens -->
+<section id="galeria" class="gallery-section">
+    <h2 class="gallery-title">Capturing the Night Sky</h2>
+    <p class="gallery-subtitle">A glimpse of the universe through my lens.</p>
+
+    <div class="gallery-grid">
+        <div class="photo-card">
+            <div class="photo-wrapper">
+                <img src="./media/grande_foto_nice.jpg" alt="Stars">
+            </div>
+            <p class="caption">Our Galactic Core (Milky Way).</p>
+        </div>
+
+        <div class="photo-card">
+            <div class="photo-wrapper">
+                <img src="./media/serra_edit.jpg" alt="Moon">
+            </div>
+            <p class="caption">The Milky Way in all its glory.</p>
+        </div>
+
+        <div class="photo-card">
+            <div class="photo-wrapper">
+                <img src="./media/StarStaX_IMG_5.jpg" alt="Nebula">
+            </div>
+            <p class="caption">Earth's Rhythm (Startrail).</p>
+        </div>
+
+        <div class="photo-card">
+            <div class="photo-wrapper">
+                <img src="./media/Comingsoon.png" alt="Night sky">
+            </div>
+            <p class="caption">Coming Soon</p>
+        </div>
+    </div>
+</section>
+
+<footer class="final-footer">
+    <div class="footer-inner">
+        <div class="inspirational-quotes">
+            <p class="quote">"Science is about discovering the world; Technology is about building it."</p>
+            <p class="quote-sub">From the micro-scale of biology to the infinite scale of the stars, curiosity is the bridge to innovation.</p>
+        </div>
+        
+        <hr class="footer-divider">
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 • Built with code and curiosity.</p>
+            <div class="social-links">
+                <a href="#">GitHub</a>
+                <a href="#">LinkedIn</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
+
     <script src="./main.js"></script>
 </body>
 </html>
