@@ -14,7 +14,7 @@ body {
     display: flex;
     justify-content: space-between; /* Empurra o logo para a esquerda e links para a direita */
     align-items: center;
-    padding: 1rem 5%;
+    padding: 1rem 2%;
     background-color: #1B263B;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     position: sticky;
@@ -30,8 +30,8 @@ body {
 }
 
 .logo-img {
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     border-radius: 8px;
 }
 
@@ -349,3 +349,122 @@ html {
         font-size: 1.3rem;
     }
 }
+
+/* --- Estilos da Página de Projetos --- */
+
+.projects-container {
+    padding: 80px 10%;
+    min-height: 70vh;
+}
+
+.projects-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.projects-header h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.projects-header p {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+/* Grelha de Projetos */
+.projects-grid {
+    display: grid;
+    /* Força 3 colunas de tamanhos iguais */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 30px;
+}
+
+.project-card {
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.project-image {
+    width: 100%;
+    height: 180px;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.project-info {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.tags-container {
+    margin: 15px 0;
+}
+
+.tag {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin-right: 5px;
+    color: white; /* Texto branco para destacar nas cores fortes */
+}
+
+.project-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.btn-code, .btn-live, .btn-locked {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    font-size: 0.85rem;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.btn-code { background: #f5f5f5; color: #333; border: 1px solid #ddd; }
+.btn-live { background: #007BFF; color: white; }
+.btn-locked { background: #eee; color: #999; cursor: not-allowed; }
+
+/* Responsividade: Passar para 2 colunas em tablets e 1 coluna em telemóveis */
+@media (max-width: 1024px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 700px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.tag-html { background-color: #E34F26; } /* Laranja HTML5 */
+.tag-css { background-color: #1572B6; }  /* Azul CSS3 */
+.tag-js { background-color: #F7DF1E; color: #333; } /* Amarelo JS (texto escuro para ler melhor) */
+.tag-python { background-color: #3776AB; } /* Azul Python */
+.tag-sql { background-color: #003B57; }    /* Azul Escuro SQL/Bases de dados */
+.tag-scratch { background-color: #FFAB19; } /* Laranja/Amarelo Scratch */
