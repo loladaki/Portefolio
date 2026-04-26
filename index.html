@@ -1,136 +1,200 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portefolio</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-
 <html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portefólio | O Teu Nome</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[Nome] — Portfólio</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;1,9..144,200;1,9..144,300&family=DM+Sans:wght@200;300;400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
 </head>
 <body>
 
-  <!-- Navegação -->
+<canvas id="stars-canvas"></canvas>
 
-  <header>
-    <nav class="navbar">
-        <div class="logo-container">
-            <img src="media/logo.png" alt="Logo" class="logo-img">
-            <span class="site-name">My transition journey</span>
-        </div>
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">[Nome]</a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Início</a></li>
+    <li><a href="projetos.html">Projetos</a></li>
+    <li><a href="cv.html">Currículo</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
+  </ul>
+</nav>
 
-        <ul class="nav-links">
-            <li><a href="/index.html">Home</a></li>
-            <li><a href="/projects.html">Projects</a></li>
-            <li><a href="#curriculo">Curriculum</a></li>
-            <li><a href="#contactos" class="btn-contacto">Contacts</a></li>
-        </ul>
-    </nav>
-  </header>
+<!-- HERO -->
+<section id="hero">
 
-  <!-- Introdução -->
-  <main>
-    
-    <section class="hero">
-    <div class="hero-content">
-        <h1>From <span class="highlight-green">Lab Tubes</span> to <span class="highlight-blue">Lines of Code</span></h1>
-        
-        <p class="intro-text">
-            This is my first serious project, designed to be a continuous learning journey. 
-            More than just a portfolio, this site and every project within it represent my 
-            commitment to mastering the digital world.
-        </p>
-
-        <p class="bio-text">
-            With a background in <strong>Biotechnology</strong>, I’ve recently discovered a deep passion 
-            for programming. I am currently pivoting my career to become a full-stack developer, 
-            focusing on <strong>HTML, CSS, JavaScript</strong>, and expanding into <strong>Python and SQL</strong>.
-        </p>
-
-        <p class="hobbies-text">
-            When I'm not coding, you'll find me looking up. I’m a nature enthusiast and a 
-            space lover who enjoys capturing the beauty of the night sky. You can explore 
-            some of my <strong>astrophotography</strong> right here on this site.
-        </p>
-
-        <div class="hero-btns">
-            <a href="#projectos" class="btn-primary">View My Projects</a>
-            <a href="#galeria" class="btn-secondary">See My Photos 🌌</a>
-        </div>
+  <!-- LEFT -->
+  <div class="hero-left">
+    <div class="hero-photo-wrap">
+      <!-- <img src="foto.jpg" alt="[Nome]"> -->
+      <span>A tua<br>foto</span>
+      <div class="hero-photo-ring"></div>
     </div>
-    
-    <div class="hero-visual">
-        <div class="placeholder-art">🚀</div>
+    <p class="hero-eyebrow">Biotecnologista &amp; Programador</p>
+    <h1 class="hero-name">[O Teu<br><em>Nome]</em></h1>
+    <p class="hero-bio">
+      Formado em <strong>Biotecnologia</strong>, apaixonado por <strong>programação</strong> e fascinado pelo universo.
+      Este site é o meu espaço para partilhar o que faço, o que aprendo — e o que observo lá em cima.
+    </p>
+    <div class="hero-ctas">
+      <a href="projetos.html" class="btn-primary">Ver projetos</a>
+      <a href="cv.html" class="btn-ghost">Currículo</a>
     </div>
+  </div>
+
+  <!-- RIGHT — snake game -->
+  <div class="hero-right">
+    <div class="game-panel">
+      <div class="game-header">
+        <span class="game-title">space_snake.py</span>
+        <div class="game-score-wrap">
+          <span class="game-score-label">score</span>
+          <span class="game-score" id="scoreDisplay">0</span>
+        </div>
+      </div>
+      <div class="game-canvas-wrap">
+        <canvas id="snakeCanvas"></canvas>
+        <div class="game-overlay" id="gameOverlay">
+          <div class="overlay-title" id="overlayTitle">Space<br>Snake</div>
+          <div class="overlay-sub" id="overlaySub">setas ou WASD para jogar</div>
+          <button class="overlay-btn" id="overlayBtn">▶ Iniciar</button>
+        </div>
+      </div>
+      <div class="game-footer">
+        <span class="game-hint">↑ ↓ ← → &nbsp;|&nbsp; toca no ecrã para mobile</span>
+        <span class="game-hiscore">best: <span id="hiScore">0</span></span>
+      </div>
+    </div>
+  </div>
+
 </section>
 
-```
-<!-- Secção de imagens -->
-<section id="galeria" class="gallery-section">
-    <h2 class="gallery-title">Capturing the Night Sky</h2>
-    <p class="gallery-subtitle">A glimpse of the universe through my lens.</p>
+<div class="divider"></div>
 
-    <div class="gallery-grid">
-        <div class="photo-card">
-            <div class="photo-wrapper">
-                <img src="/media/grande_foto_nice.jpg" alt="Stars">
-            </div>
-            <p class="caption">Our Galactic Core (Milky Way).</p>
-        </div>
-
-        <div class="photo-card">
-            <div class="photo-wrapper">
-                <img src="/media/serra_edit.jpg" alt="Moon">
-            </div>
-            <p class="caption">The Milky Way in all its glory.</p>
-        </div>
-
-        <div class="photo-card">
-            <div class="photo-wrapper">
-                <img src="/media/StarStaX_IMG_5.jpg" alt="Nebula">
-            </div>
-            <p class="caption">Earth's Rhythm (Startrail).</p>
-        </div>
-
-        <div class="photo-card">
-            <div class="photo-wrapper">
-                <img src="./media/Comingsoon.png" alt="Night sky">
-            </div>
-            <p class="caption">Coming Soon</p>
-        </div>
+<!-- INTRODUÇÃO -->
+<section class="section">
+  <div class="intro-grid">
+    <div class="reveal">
+      <p class="eyebrow">Sobre este site</p>
+      <h2 class="section-title">Porque <em>existe</em><br>este espaço?</h2>
     </div>
+    <div class="intro-text reveal reveal-d1">
+      <p>Comecei o meu percurso nas ciências, mas durante o mestrado descobri que <strong>programar também é uma forma de pensar</strong> — metódica, criativa e com capacidade de resolver qualquer problema.</p>
+      <p>Este site existe para reunir tudo: os projetos que construí, as competências que desenvolvi e as coisas que me movem para além do trabalho. Uma <strong>janela honesta</strong> para o meu percurso.</p>
+      <p>Aqui encontras trabalhos em Python, SQL e análise de dados, mas também as fotografias que tiro do céu noturno — porque curiosidade não tem fronteiras.</p>
+    </div>
+  </div>
+  <div class="intro-stats">
+    <div class="stat-card reveal reveal-d1"><div class="stat-num">Bio</div><div class="stat-label">Formação em<br>Biotecnologia</div></div>
+    <div class="stat-card reveal reveal-d2"><div class="stat-num">{ }</div><div class="stat-label">Python · SQL<br>HTML · CSS · JS</div></div>
+    <div class="stat-card reveal reveal-d2"><div class="stat-num">★</div><div class="stat-label">Astrofotografia<br>como paixão</div></div>
+    <div class="stat-card reveal reveal-d3"><div class="stat-num">↗</div><div class="stat-label">Sempre a<br>aprender mais</div></div>
+  </div>
 </section>
 
-<footer class="final-footer">
-    <div class="footer-inner">
-        <div class="inspirational-quotes">
-            <p class="quote">"Science is about discovering the world; Technology is about building it."</p>
-            <p class="quote-sub">From the micro-scale of biology to the infinite scale of the stars, curiosity is the bridge to innovation.</p>
-        </div>
-        
-        <hr class="footer-divider">
-        
-        <div class="footer-bottom">
-            <p>&copy; 2024 • Built with code and curiosity.</p>
-            <div class="social-links">
-                <a href="#">GitHub</a>
-                <a href="#">LinkedIn</a>
-            </div>
-        </div>
+<div class="divider"></div>
+
+<!-- HOBBIES -->
+<div class="section-full">
+  <div class="inner">
+    <p class="eyebrow reveal">Fora do laboratório</p>
+    <h2 class="section-title reveal">Os meus <em>interesses</em></h2>
+    <div class="hobbies-grid">
+      <div class="hobby-card reveal reveal-d1">
+        <div class="hobby-icon">🔭</div>
+        <div class="hobby-name">Astrofotografia</div>
+        <div class="hobby-desc">Noites a apontar a câmara ao céu. Nebulosas, galáxias e o sistema solar — a minha forma de me ligar ao universo.</div>
+        <div class="hobby-tag">→ Galeria em baixo</div>
+      </div>
+      <div class="hobby-card reveal reveal-d2">
+        <div class="hobby-icon">💻</div>
+        <div class="hobby-name">Programação</div>
+        <div class="hobby-desc">Python, SQL, visualização de dados — comecei no mestrado e hoje é uma das coisas que mais me fascina.</div>
+        <div class="hobby-tag">→ Ver projetos</div>
+      </div>
+      <div class="hobby-card reveal reveal-d3">
+        <div class="hobby-icon">🧬</div>
+        <div class="hobby-name">[Hobby 3]</div>
+        <div class="hobby-desc">Substitui com a descrição do teu hobby — o que fazes, o que te atrai, como começaste.</div>
+        <div class="hobby-tag">Placeholder</div>
+      </div>
+      <div class="hobby-card reveal" style="transition-delay:.4s">
+        <div class="hobby-icon">📚</div>
+        <div class="hobby-name">[Hobby 4]</div>
+        <div class="hobby-desc">Substitui ou remove este card conforme quiseres.</div>
+        <div class="hobby-tag">Placeholder</div>
+      </div>
     </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ASTROFOTOGRAFIA CAROUSEL -->
+<section class="section" id="astrofotografia">
+  <p class="eyebrow reveal">Astrofotografia</p>
+  <h2 class="section-title reveal">O universo<br>pelo meu <em>olhar</em></h2>
+  <div class="reveal">
+    <div class="carousel-wrap">
+      <div class="carousel-track" id="carouselTrack">
+        <div class="carousel-slide slide-1">
+          <div class="slide-stars"></div>
+          <!-- <img src="foto1.jpg" alt=""> -->
+          <div class="slide-caption">
+            <div class="slide-caption-title">Nebulosa de [Nome]</div>
+            <div class="slide-caption-meta">ISO 1600 · 300s · [Data]</div>
+          </div>
+        </div>
+        <div class="carousel-slide slide-2">
+          <div class="slide-stars"></div>
+          <div class="slide-caption">
+            <div class="slide-caption-title">Via Láctea sobre [Local]</div>
+            <div class="slide-caption-meta">ISO 3200 · 25s · [Data]</div>
+          </div>
+        </div>
+        <div class="carousel-slide slide-3">
+          <div class="slide-stars"></div>
+          <div class="slide-caption">
+            <div class="slide-caption-title">[Objeto astronómico]</div>
+            <div class="slide-caption-meta">ISO 800 · 600s · [Data]</div>
+          </div>
+        </div>
+        <div class="carousel-slide slide-4">
+          <div class="slide-stars"></div>
+          <div class="slide-caption">
+            <div class="slide-caption-title">[Objeto astronómico]</div>
+            <div class="slide-caption-meta">ISO 1600 · 180s · [Data]</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-controls">
+      <div class="carousel-dots" id="carouselDots"></div>
+      <span class="carousel-counter" id="carouselCounter">01 / 04</span>
+      <div class="carousel-btns">
+        <button class="carousel-btn" id="prevBtn">←</button>
+        <button class="carousel-btn" id="nextBtn">→</button>
+      </div>
+    </div>
+    <p class="carousel-note">Fundos placeholder — substitui cada slide com <code>&lt;img src="foto.jpg"&gt;</code></p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 [O Teu Nome]</p>
+  <nav class="footer-links">
+    <a href="projetos.html">Projetos</a>
+    <a href="cv.html">Currículo</a>
+    <a href="contacto.html">Contacto</a>
+  </nav>
 </footer>
 
-</body>
-</html>
+<script src="scripts.js"></script>
 
-    <script src="./main.js"></script>
 </body>
 </html>
