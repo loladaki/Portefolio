@@ -1,142 +1,422 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Projects | My Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projetos — [Nome]</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;1,9..144,200;1,9..144,300&family=DM+Sans:wght@200;300;400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:#09090f; --bg2:#0e0f18; --bg3:#13141f;
+      --ink:#e9e6de; --ink-mid:#a09d95; --ink-soft:#5c5a54;
+      --gold:#c8a97e; --gold-dim:#7a6244;
+      --blue:#5a8fff; --green:#4caf82;
+      --line:rgba(255,255,255,0.07);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font-weight:300;line-height:1.7;overflow-x:hidden;}
+
+    #stars-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.4;}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.4rem 5rem;background:rgba(9,9,15,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--line);}
+    .nav-logo{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:200;font-style:italic;color:var(--gold);text-decoration:none;letter-spacing:0.04em;}
+    .nav-links{display:flex;gap:2.5rem;list-style:none;}
+    .nav-links a{font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-mid);text-decoration:none;transition:color 0.2s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--gold);}
+
+    .page-hero{position:relative;z-index:1;padding:10rem 5rem 5rem;border-bottom:1px solid var(--line);}
+    .page-hero-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;}
+    .page-eyebrow{font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:0.75rem;opacity:0;animation:fadeUp 0.7s 0.1s forwards;}
+    .page-eyebrow::before{content:'';display:block;width:2rem;height:1px;background:var(--gold);opacity:0.5;}
+    .page-title{font-family:'Fraunces',serif;font-size:clamp(3.5rem,7vw,7rem);font-weight:200;line-height:0.95;letter-spacing:-0.02em;opacity:0;animation:fadeUp 0.8s 0.25s forwards;}
+    .page-title em{font-style:italic;color:var(--gold);}
+    .page-hero-right{opacity:0;animation:fadeUp 0.8s 0.45s forwards;padding-bottom:0.5rem;}
+    .page-desc{font-size:0.97rem;color:var(--ink-mid);line-height:1.85;max-width:44ch;margin-bottom:1.5rem;}
+    .project-count{font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--ink-soft);letter-spacing:0.12em;}
+    .project-count span{color:var(--gold);}
+
+    .filter-wrap{position:relative;z-index:1;padding:1.75rem 5rem;border-bottom:1px solid var(--line);background:var(--bg2);}
+    .filter-inner{max-width:1300px;margin:0 auto;display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap;}
+    .filter-label{font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--ink-soft);letter-spacing:0.14em;text-transform:uppercase;margin-right:0.5rem;}
+    .filter-btn{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.4rem 1rem;border:1px solid var(--line);background:transparent;color:var(--ink-soft);cursor:pointer;transition:all 0.2s;}
+    .filter-btn:hover{border-color:var(--gold-dim);color:var(--gold);}
+    .filter-btn.active{background:var(--gold);color:var(--bg);border-color:var(--gold);}
+
+    .projects-wrap{position:relative;z-index:1;max-width:1300px;margin:0 auto;padding:5rem 5rem 7rem;}
+
+    .section-eyebrow{font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--ink-soft);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:2rem;display:flex;align-items:center;gap:0.6rem;}
+    .section-eyebrow::before{content:'';display:block;width:1.2rem;height:1px;background:var(--ink-soft);}
+
+    .featured-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:5rem;}
+
+    .featured-card{background:var(--bg2);border:1px solid var(--line);position:relative;overflow:hidden;display:flex;flex-direction:column;transition:border-color 0.3s,transform 0.3s;}
+    .featured-card:hover{border-color:rgba(200,169,126,0.3);transform:translateY(-3px);}
+    .featured-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity 0.3s;}
+    .featured-card:hover::before{opacity:1;}
+
+    .card-preview{width:100%;padding:1.5rem 1.5rem 0;background:var(--bg3);border-bottom:1px solid var(--line);}
+    .preview-bar{display:flex;align-items:center;gap:0.4rem;margin-bottom:1rem;}
+    .preview-dot{width:7px;height:7px;border-radius:50%;}
+    .preview-dot:nth-child(1){background:#ff5f57;}
+    .preview-dot:nth-child(2){background:#febc2e;}
+    .preview-dot:nth-child(3){background:#28c840;}
+    .preview-screen{height:120px;width:100%;position:relative;overflow:hidden;border-radius:2px 2px 0 0;}
+
+    .chart-a{display:flex;align-items:flex-end;gap:3px;height:100%;padding:8px 8px 0;}
+    .chart-a .bar{flex:1;border-radius:1px 1px 0 0;background:var(--gold);opacity:0.6;}
+    .chart-a .bar.alert{background:var(--blue);opacity:0.9;}
+    .chart-a .bar.low{background:var(--green);opacity:0.9;}
+    .chart-b{width:100%;height:100%;}
+    .chart-b svg{width:100%;height:100%;overflow:visible;}
+
+    .card-body{padding:2rem 2rem 1.75rem;flex:1;display:flex;flex-direction:column;}
+    .card-num{font-family:'Fraunces',serif;font-size:0.8rem;color:var(--gold);opacity:0.5;margin-bottom:0.75rem;}
+    .card-title{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:300;line-height:1.2;margin-bottom:1rem;color:var(--ink);}
+    .card-desc{font-size:0.88rem;color:var(--ink-mid);line-height:1.75;margin-bottom:1.5rem;flex:1;}
+    .card-features{display:flex;flex-direction:column;gap:0.4rem;margin-bottom:1.5rem;}
+    .card-feature{font-family:'DM Mono',monospace;font-size:0.67rem;color:var(--ink-soft);letter-spacing:0.04em;display:flex;align-items:center;gap:0.5rem;}
+    .card-feature::before{content:'→';color:var(--gold);opacity:0.6;}
+    .card-footer{display:flex;align-items:center;justify-content:space-between;padding-top:1.25rem;border-top:1px solid var(--line);}
+    .card-tags{display:flex;gap:0.4rem;flex-wrap:wrap;}
+
+    .tag{font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.22rem 0.6rem;border-radius:2px;white-space:nowrap;}
+    .tag-python{background:rgba(76,175,130,0.12);color:var(--green);border:1px solid rgba(76,175,130,0.2);}
+    .tag-sql{background:rgba(90,143,255,0.12);color:var(--blue);border:1px solid rgba(90,143,255,0.2);}
+    .tag-js{background:rgba(200,169,126,0.12);color:var(--gold);border:1px solid rgba(200,169,126,0.2);}
+    .tag-html{background:rgba(200,100,80,0.12);color:#e08070;border:1px solid rgba(200,100,80,0.2);}
+    .tag-scratch{background:rgba(255,160,40,0.12);color:#f0a030;border:1px solid rgba(255,160,40,0.2);}
+    .tag-misc{background:rgba(160,157,149,0.1);color:var(--ink-mid);border:1px solid var(--line);}
+
+    .card-links{display:flex;gap:0.6rem;}
+    .card-link{display:inline-flex;align-items:center;gap:0.4rem;font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.45rem 0.9rem;border:1px solid var(--line);color:var(--ink-mid);text-decoration:none;transition:all 0.2s;}
+    .card-link:hover{border-color:var(--gold);color:var(--gold);}
+
+    .secondary-label{font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--ink-soft);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:1.75rem;display:flex;align-items:center;gap:0.6rem;}
+    .secondary-label::before{content:'';display:block;width:1.2rem;height:1px;background:var(--ink-soft);}
+    .secondary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+
+    .small-card{background:var(--bg2);padding:2rem 1.75rem;display:flex;flex-direction:column;gap:1rem;transition:background 0.25s;position:relative;overflow:hidden;}
+    .small-card:hover{background:var(--bg3);}
+    .small-card.coming-soon{background:transparent;border:1px dashed rgba(200,169,126,0.15);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.75rem;cursor:default;}
+    .small-card-num{font-family:'Fraunces',serif;font-size:0.75rem;color:var(--gold);opacity:0.4;}
+    .small-card-title{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:300;line-height:1.2;color:var(--ink);}
+    .small-card-desc{font-size:0.82rem;color:var(--ink-mid);line-height:1.7;flex:1;}
+    .small-card-footer{display:flex;align-items:center;justify-content:space-between;padding-top:1rem;border-top:1px solid var(--line);margin-top:auto;}
+    .small-link{font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none;transition:color 0.2s;display:flex;align-items:center;gap:0.3rem;}
+    .small-link:hover{color:var(--gold);}
+    .coming-title{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:200;font-style:italic;color:var(--ink-soft);text-align:center;}
+    .coming-sub{font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--ink-soft);letter-spacing:0.14em;text-transform:uppercase;text-align:center;}
+    .pulse-ring{width:36px;height:36px;border-radius:50%;border:1px dashed var(--gold-dim);animation:spin 12s linear infinite;display:flex;align-items:center;justify-content:center;}
+    @keyframes spin{to{transform:rotate(360deg);}}
+    .pulse-dot{width:6px;height:6px;border-radius:50%;background:var(--gold-dim);animation:blink 2s ease-in-out infinite;}
+    @keyframes blink{0%,100%{opacity:.2}50%{opacity:1}}
+
+    .project-item.hidden{display:none;}
+
+    footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:2rem 5rem;display:flex;justify-content:space-between;align-items:center;background:var(--bg);}
+    footer p{font-size:0.7rem;color:var(--ink-soft);}
+    .footer-links{display:flex;gap:2rem;}
+    .footer-links a{font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none;transition:color 0.2s;}
+    .footer-links a:hover{color:var(--gold);}
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity 0.65s ease,transform 0.65s ease;}
+    .reveal.visible{opacity:1;transform:none;}
+    .reveal-d1{transition-delay:.08s;} .reveal-d2{transition-delay:.16s;} .reveal-d3{transition-delay:.24s;}
+
+    @media(max-width:1024px){
+      nav,footer{padding-left:2rem;padding-right:2rem;}
+      .page-hero{padding:8rem 2rem 4rem;}
+      .page-hero-inner{grid-template-columns:1fr;gap:2rem;}
+      .filter-wrap{padding:1.5rem 2rem;}
+      .projects-wrap{padding:3rem 2rem 5rem;}
+      .featured-grid{grid-template-columns:1fr;}
+      .secondary-grid{grid-template-columns:1fr 1fr;}
+    }
+    @media(max-width:600px){
+      nav{padding:1.2rem 1.25rem;}
+      .nav-links{display:none;}
+      .page-hero{padding:7rem 1.25rem 3rem;}
+      .filter-wrap,.projects-wrap{padding-left:1.25rem;padding-right:1.25rem;}
+      .secondary-grid{grid-template-columns:1fr;}
+      footer{flex-direction:column;gap:1rem;padding:1.5rem;}
+    }
+  </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="logo-container">
-            <img src="media/logo.png" alt="Logo" class="logo-img">
-            <span class="site-name">My transition journey</span>
-        </div>
-        <ul class="nav-links">
-            <li><a href="./index.html">Home</a></li>
-            <li><a href="./projects.html">Projects</a></li>
-            <li><a href="#curriculo">Curriculum</a></li>
-            <li><a href="#contactos" class="btn-contacto">Contacts</a></li>
-        </ul>
-    </nav>
+<canvas id="stars-canvas"></canvas>
 
-    <main class="projects-container">
-    <header class="projects-header">
-        <h1>My <span class="highlight-blue">Projects</span></h1>
-        <p>A collection of my work in Web Development and Data Science.</p>
-    </header>
-    
-    <div class="projects-grid">
-        <div class="project-card">
-            <div class="project-image">
-                <img src="media/portfolio.webp" alt="Portfolio Site">
-            </div>
-            <div class="project-info">
-                <h3>Personal Portfolio</h3>
-                <p>My first serious step into Web Development. Built with HTML, CSS and JS.</p>
-                <div class="tags-container">
-                    <span class="tag tag-html">HTML</span> <span class="tag tag-css">CSS</span> <span class="tag tag-js">JavaScript</span>
-                </div>
-                <div class="project-actions">
-                    <a href="https://github.com/loladaki/Portefolio" class="btn-code" target=”_blank”>View Code</a>
-                    <a href="/index.html" class="btn-live" target=”_blank”>Live Demo</a>
-                </div>
-            </div>
-        </div>
+<nav>
+  <a href="index.html" class="nav-logo">[Nome]</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Início</a></li>
+    <li><a href="projetos.html" class="active">Projetos</a></li>
+    <li><a href="cv.html">Currículo</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
+  </ul>
+</nav>
 
-        <div class="project-card placeholder">
-            <div class="project-image">
-                <img src="media/cute-calculator-for-desk-office-aesthetic-calculator-colorful-original-imaha3ugeag2evfq.webp" alt="Calculator">
-            </div>
-            <div class="project-info">
-                <h3>The Evolution Calculator</h3>
-                <p>A logic-to-code study, replicating a Scratch calculator into Python and Web languages.</p>
-                <div class="tags-container">
-                    <span class="tag tag-scratch">Scratch</span><span class="tag tag-html">HTML</span> <span class="tag tag-css">CSS</span><span class="tag tag-js">JS</span>
-                </div>
-                <div class="project-actions">
-                    <a href="#" class="btn-code">View Code</a>
-                    <span class="btn-locked">In Progress</span>
-                </div>
-            </div>
-        </div>
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div>
+      <p class="page-eyebrow">Portfolio</p>
+      <h1 class="page-title">Os meus<br><em>projetos</em></h1>
+    </div>
+    <div class="page-hero-right">
+      <p class="page-desc">Do laboratório ao código — cada projeto nasceu de curiosidade real. Análise de dados, ferramentas úteis e algumas experiências criativas.</p>
+      <p class="project-count"><span id="visibleCount">5</span> projetos · <span>+ em breve</span></p>
+    </div>
+  </div>
+</div>
 
-        <div class="project-card placeholder">
-            <div class="project-image">
-                <img src="/media/bmi-concept-wooden-blocks-measuring-600nw-2538025465.webp" alt="BMI Calculator">
-            </div>
-            <div class="project-info">
-                <h3>Health Metrics: BMI Calculator</h3>
-                <p>Developing the BMI logic in Scratch before porting it to Python and JS to master health-data processing.</p>
-                <div class="tags-container"><span class="tag tag-scratch">Scratch</span><span class="tag tag-html">HTML</span> <span class="tag tag-css">CSS</span><span class="tag tag-js">JS</span></div>
-                <div class="project-actions">
-                    <a href="#" class="btn-code">View Code</a>
-                    <span class="btn-locked">Pending</span>
-                </div>
-            </div>
-        </div>
+<div class="filter-wrap">
+  <div class="filter-inner">
+    <span class="filter-label">filtrar</span>
+    <button class="filter-btn active" data-filter="all">Todos</button>
+    <button class="filter-btn" data-filter="python">Python</button>
+    <button class="filter-btn" data-filter="sql">SQL</button>
+    <button class="filter-btn" data-filter="javascript">JavaScript</button>
+    <button class="filter-btn" data-filter="html">HTML / CSS</button>
+    <button class="filter-btn" data-filter="scratch">Scratch</button>
+  </div>
+</div>
 
-        <!-- <div class="project-card placeholder">
-            <div class="project-image">
-                <img src="https://via.placeholder.com/400x250/f0f0f0/999999?text=Future+Idea" alt="Coming Soon">
-            </div>
-            <div class="project-info">
-                <h3>Bio-informatics Tool</h3>
-                <p>A web tool to visualize DNA sequences in a more intuitive way.</p>
-                <div class="project-actions">
-                    <span class="btn-locked">Coming Soon</span>
-                </div>
-            </div>
-        </div>
+<div class="projects-wrap">
 
-        <div class="project-card placeholder">
-            <div class="project-image">
-                <img src="https://via.placeholder.com/400x250/f0f0f0/999999?text=Future+Idea" alt="Coming Soon">
-            </div>
-            <div class="project-info">
-                <h3>SQL Database Lab</h3>
-                <p>Organizing lab inventory through a relational database system.</p>
-                <div class="project-actions">
-                    <span class="btn-locked">Coming Soon</span>
-                </div>
-            </div>
-        </div>
+  <p class="section-eyebrow reveal">Projetos em destaque</p>
 
-        <div class="project-card placeholder">
-            <div class="project-image">
-                <img src="https://via.placeholder.com/400x250/f0f0f0/999999?text=Future+Idea" alt="Coming Soon">
-            </div>
-            <div class="project-info">
-                <h3>Open Project</h3>
-                <p>This space is reserved for my next big learning challenge.</p>
-                <div class="project-actions">
-                    <span class="btn-locked">Coming Soon</span>
-                </div>
-            </div>
-        </div>
-    </div>-->
-</main>
+  <div class="featured-grid">
 
-    <footer class="final-footer">
-        <div class="footer-inner">
-            <div class="inspirational-quotes">
-                <p class="quote">"Science is about discovering the world; Technology is about building it."</p>
-                <p class="quote-sub">From the micro-scale of biology to the infinite scale of the stars.</p>
-            </div>
-            <hr class="footer-divider">
-            <div class="footer-bottom">
-                <p>&copy; 2024 • Built with code and curiosity.</p>
-                <div class="social-links">
-                    <a href="#">GitHub</a>
-                    <a href="#">LinkedIn</a>
-                </div>
-            </div>
+    <div class="featured-card project-item reveal reveal-d1" data-tags="python sql javascript html">
+      <div class="card-preview">
+        <div class="preview-bar">
+          <div class="preview-dot"></div><div class="preview-dot"></div><div class="preview-dot"></div>
         </div>
-    </footer>
+        <div class="preview-screen">
+          <div class="chart-a" id="chartA"></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">01 — Destaque</div>
+        <h2 class="card-title">Tracker de Preços<br>do Cabaz Alimentar</h2>
+        <p class="card-desc">Monitorização automática dos preços do cabaz alimentar em supermercados portugueses. Regista histórico em SQL, detecta variações e apresenta tendências num dashboard interativo.</p>
+        <div class="card-features">
+          <span class="card-feature">Scraping automático e agendado</span>
+          <span class="card-feature">Histórico completo em base de dados SQL</span>
+          <span class="card-feature">Dashboard com gráficos de evolução de preços</span>
+          <span class="card-feature">Comparação entre supermercados</span>
+        </div>
+        <div class="card-footer">
+          <div class="card-tags">
+            <span class="tag tag-python">Python</span>
+            <span class="tag tag-sql">SQL</span>
+            <span class="tag tag-js">JavaScript</span>
+            <span class="tag tag-html">HTML/CSS</span>
+          </div>
+          <div class="card-links">
+            <a href="https://github.com/[teu-user]/[repo]" target="_blank" class="card-link">⌥ GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <div class="featured-card project-item reveal reveal-d2" data-tags="python sql javascript html">
+      <div class="card-preview">
+        <div class="preview-bar">
+          <div class="preview-dot"></div><div class="preview-dot"></div><div class="preview-dot"></div>
+        </div>
+        <div class="preview-screen">
+          <div class="chart-b">
+            <svg id="lineChart" viewBox="0 0 300 100" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="lineGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#5a8fff" stop-opacity="0.3"/>
+                  <stop offset="100%" stop-color="#5a8fff" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path id="lineArea" fill="url(#lineGrad)"/>
+              <path id="linePath" fill="none" stroke="#5a8fff" stroke-width="1.5"/>
+              <circle id="alertDot" r="5" fill="#4caf82" opacity="0"/>
+              <line id="alertLine" y1="0" y2="100" stroke="#4caf82" stroke-width="1" stroke-dasharray="3,3" opacity="0"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">02 — Destaque</div>
+        <h2 class="card-title">Monitor de Cosméticos<br>Continente</h2>
+        <p class="card-desc">Acompanhamento de preços e promoções de cosméticos no site do Continente. Guarda histórico em SQL, detecta mínimos históricos e envia alertas automáticos por email.</p>
+        <div class="card-features">
+          <span class="card-feature">Tracking de promoções em tempo real</span>
+          <span class="card-feature">Alerta por email em mínimo histórico</span>
+          <span class="card-feature">Histórico de preços por produto</span>
+          <span class="card-feature">Dashboard com filtros e comparações</span>
+        </div>
+        <div class="card-footer">
+          <div class="card-tags">
+            <span class="tag tag-python">Python</span>
+            <span class="tag tag-sql">SQL</span>
+            <span class="tag tag-js">JavaScript</span>
+            <span class="tag tag-html">HTML/CSS</span>
+          </div>
+          <div class="card-links">
+            <a href="https://github.com/[teu-user]/[repo]" target="_blank" class="card-link">⌥ GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="secondary-label reveal">Outros projetos</p>
+
+  <div class="secondary-grid">
+
+    <div class="small-card project-item reveal reveal-d1" data-tags="javascript html">
+      <div class="small-card-num">03</div>
+      <div class="small-card-title">Este Portfólio</div>
+      <div class="small-card-desc">Site pessoal construído de raiz — dark theme espacial, jogo da cobra interativo, carrossel de astrofotografia e design totalmente responsivo.</div>
+      <div class="small-card-footer">
+        <div class="card-tags">
+          <span class="tag tag-html">HTML/CSS</span>
+          <span class="tag tag-js">JavaScript</span>
+        </div>
+        <a href="https://github.com/[teu-user]/[repo]" target="_blank" class="small-link">⌥ GitHub →</a>
+      </div>
+    </div>
+
+    <div class="small-card project-item reveal reveal-d2" data-tags="javascript html">
+      <div class="small-card-num">04</div>
+      <div class="small-card-title">Pedra, Papel<br>e Tesoura</div>
+      <div class="small-card-desc">Jogo clássico contra o computador com interface animada e placar de pontuação. Um dos primeiros projetos em JavaScript puro.</div>
+      <div class="small-card-footer">
+        <div class="card-tags">
+          <span class="tag tag-html">HTML/CSS</span>
+          <span class="tag tag-js">JavaScript</span>
+        </div>
+        <a href="https://github.com/[teu-user]/[repo]" target="_blank" class="small-link">⌥ GitHub →</a>
+      </div>
+    </div>
+
+    <div class="small-card project-item reveal reveal-d3" data-tags="scratch">
+      <div class="small-card-num">05</div>
+      <div class="small-card-title">Projetos<br>em Scratch</div>
+      <div class="small-card-desc">Onde tudo começou. Scratch não é só para crianças — é onde aprendi lógica de programação, loops, condicionais e eventos de forma visual e intuitiva.</div>
+      <div class="small-card-footer">
+        <div class="card-tags">
+          <span class="tag tag-scratch">Scratch</span>
+          <span class="tag tag-misc">Lógica</span>
+        </div>
+        <a href="https://scratch.mit.edu/users/[teu-user]/" target="_blank" class="small-link">Ver perfil →</a>
+      </div>
+    </div>
+
+    <div class="small-card coming-soon project-item" data-tags="all">
+      <div class="pulse-ring"><div class="pulse-dot"></div></div>
+      <div class="coming-title">Em breve</div>
+      <div class="coming-sub">próximo projeto a caminho</div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 [O Teu Nome]</p>
+  <nav class="footer-links">
+    <a href="index.html">Início</a>
+    <a href="cv.html">Currículo</a>
+    <a href="contacto.html">Contacto</a>
+  </nav>
+</footer>
+
+<script>
+  /* Stars */
+  (function(){
+    const c=document.getElementById('stars-canvas'),ctx=c.getContext('2d');
+    let stars=[];
+    function resize(){
+      c.width=window.innerWidth;c.height=window.innerHeight;
+      stars=Array.from({length:Math.floor(c.width*c.height/5000)},()=>({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.0,a:Math.random()*0.6+0.1}));
+    }
+    function draw(){
+      ctx.clearRect(0,0,c.width,c.height);
+      stars.forEach(s=>{ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,255,255,${s.a})`;ctx.fill();s.a+=(Math.random()-0.5)*0.01;s.a=Math.max(0.05,Math.min(0.8,s.a));});
+      requestAnimationFrame(draw);
+    }
+    window.addEventListener('resize',resize);resize();draw();
+  })();
+
+  /* Bar chart — project 1 */
+  (function(){
+    const wrap=document.getElementById('chartA');
+    if(!wrap)return;
+    const vals=[55,70,48,82,60,75,45,90,65,55,40,72,88,50,68,78,42,95,60,73];
+    const minIdx=vals.indexOf(Math.min(...vals));
+    vals.forEach((v,i)=>{
+      const bar=document.createElement('div');
+      bar.className='bar'+(i===minIdx?' low':(v>85?' alert':''));
+      bar.style.height='0';wrap.appendChild(bar);
+      setTimeout(()=>{bar.style.height=v+'%';bar.style.transition=`height ${0.6+i*0.03}s ease`;},300+i*30);
+    });
+  })();
+
+  /* Line chart — project 2 */
+  (function(){
+    const prices=[8.99,8.99,8.49,8.49,7.99,8.49,8.99,8.99,7.49,7.99,8.49,7.99,7.99,6.99,7.49,7.99,8.49,8.49,7.99,6.49];
+    const minP=Math.min(...prices),maxP=Math.max(...prices);
+    const W=300,H=100,pad=10;
+    const sx=i=>pad+(i/(prices.length-1))*(W-pad*2);
+    const sy=v=>(H-pad)-((v-minP)/(maxP-minP))*(H-pad*2);
+    const linePath=document.getElementById('linePath');
+    const lineArea=document.getElementById('lineArea');
+    const alertDot=document.getElementById('alertDot');
+    const alertLine=document.getElementById('alertLine');
+    const pts=prices.map((v,i)=>`${sx(i)},${sy(v)}`).join(' L ');
+    linePath.setAttribute('d',`M ${pts}`);
+    lineArea.setAttribute('d',`M ${sx(0)},${H-pad} L ${pts} L ${sx(prices.length-1)},${H-pad} Z`);
+    try{
+      const len=linePath.getTotalLength();
+      linePath.style.strokeDasharray=len;linePath.style.strokeDashoffset=len;
+      linePath.style.transition='stroke-dashoffset 1.8s ease';
+      setTimeout(()=>{linePath.style.strokeDashoffset=0;},400);
+    }catch(e){}
+    const minIdx=prices.indexOf(minP);
+    const ax=sx(minIdx),ay=sy(minP);
+    alertDot.setAttribute('cx',ax);alertDot.setAttribute('cy',ay);
+    alertLine.setAttribute('x1',ax);alertLine.setAttribute('x2',ax);
+    setTimeout(()=>{alertDot.style.transition=alertLine.style.transition='opacity 0.5s';alertDot.style.opacity=1;alertLine.style.opacity=0.7;},2200);
+  })();
+
+  /* Reveal */
+  const revObs=new IntersectionObserver(entries=>{
+    entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*60);revObs.unobserve(e.target);}});
+  },{threshold:0.08});
+  document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+
+  /* Filters */
+  const filterBtns=document.querySelectorAll('.filter-btn');
+  const items=document.querySelectorAll('.project-item');
+  const countEl=document.getElementById('visibleCount');
+  filterBtns.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      filterBtns.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const f=btn.dataset.filter;
+      let n=0;
+      items.forEach(item=>{
+        const show=f==='all'||item.dataset.tags.includes(f);
+        item.classList.toggle('hidden',!show);
+        if(show)n++;
+      });
+      countEl.textContent=n;
+    });
+  });
+</script>
 </body>
 </html>
-
 
 
