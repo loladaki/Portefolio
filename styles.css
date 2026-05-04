@@ -51,13 +51,19 @@ nav {
 .nav-links a:hover, .nav-links a.active { color: var(--gold); }
 
 /* HERO — 2 columns */
+
+#hero-photo {
+  width: 100%; height: 100%; object-fit: cover;
+  object-position: center;
+}
+
 #hero {
   position: relative; z-index: 1;
   min-height: 100vh;
   display: grid; grid-template-columns: 1fr 1fr;
   align-items: center; gap: 4rem;
   padding: 9rem 5rem 5rem;
-  background: var(--bg);
+  background: color-mix(in srgb, var(--bg) 60%, transparent);
 }
 .hero-left { display: flex; flex-direction: column; }
 
