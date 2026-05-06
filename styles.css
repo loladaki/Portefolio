@@ -1,12 +1,12 @@
 /* ─── INDEX ─── */
 
 :root {
-      --bg:       #09090f;
-      --bg2:      #0e0f18;
-      --bg3:      #13141f;
+      --bg:       #121520;
+      --bg2:      #171b28;
+      --bg3:      #202636;
       --ink:      #e9e6de;
-      --ink-mid:  #a09d95;
-      --ink-soft: #5c5a54;
+      --ink-mid:  #c1bcb1;
+      --ink-soft: #918b80;
       --gold:     #c8a97e;
       --gold-dim: #7a6244;
       --line:     rgba(255,255,255,0.07);
@@ -33,7 +33,7 @@ nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
   padding: 1.4rem 5rem;
-  background: rgba(9,9,15,0.92);
+  background: rgba(18,21,32,0.9);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--line);
@@ -65,12 +65,14 @@ nav {
   padding: 9rem 5rem 5rem;
   background: color-mix(in srgb, var(--bg) 60%, transparent);
 }
-.hero-left { display: flex; flex-direction: column; }
+.hero-left {
+  display: flex; flex-direction: column;
+}
 
 .hero-photo-wrap {
-  width: 110px; height: 110px; border-radius: 50%;
+  width: clamp(140px, 13vw, 175px); height: clamp(140px, 13vw, 175px); border-radius: 50%;
   border: 2px solid var(--gold-dim);
-  overflow: hidden; margin-bottom: 2rem;
+  overflow: hidden; margin-bottom: 2.4rem;
   background: var(--bg3);
   display: flex; align-items: center; justify-content: center;
   color: var(--ink-soft); font-size: 0.65rem;
@@ -99,18 +101,63 @@ nav {
 }
 .hero-name {
   font-family: 'Fraunces', serif;
-  font-size: clamp(3rem, 5.5vw, 5.5rem);
+  font-size: clamp(3.4rem, 6vw, 6rem);
   font-weight: 200; line-height: 0.95; letter-spacing: -0.02em;
   margin-bottom: 1.75rem;
   opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
 }
 .hero-name em { font-style: italic; color: var(--gold); }
 .hero-bio {
-  font-size: 0.95rem; color: var(--ink-mid); line-height: 1.85;
-  max-width: 40ch; margin-bottom: 2.5rem;
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+  font-size: 1.05rem; color: var(--ink-mid); line-height: 1.85;
+  max-width: 54ch; margin-bottom: 2.75rem;
+  position: relative;
+  font-size: clamp(1rem, 1.2vw, 1.08rem);
+  color: var(--ink-mid);
+  line-height: 1.95;
+  max-width: 56ch;
+  margin-bottom: 2.5rem;
+  padding-left: 1.1rem;
+  border-left: 1px solid color-mix(in srgb, var(--gold) 45%, transparent);
+=======
+>>>>>>> theirs
+  font-size: 1rem;
+  color: var(--ink-mid);
+  line-height: 1.9;
+  max-width: 58ch;
+=======
+=======
+>>>>>>> theirs
+=======
+>>>>>>> theirs
+  font-size: clamp(1.08rem, 1.35vw, 1.2rem);
+  color: var(--ink-mid);
+  line-height: 1.95;
+  max-width: 68ch;
+  width: 100%;
+<<<<<<< ours
+<<<<<<< ours
+>>>>>>> theirs
+=======
+>>>>>>> theirs
+=======
+>>>>>>> theirs
+  margin-bottom: 2.5rem;
   opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
 }
 .hero-bio strong { color: var(--ink); font-weight: 400; }
+.hero-bio::before {
+  content: '';
+  position: absolute;
+  left: -1px;
+  top: 0.2rem;
+  width: 1px;
+  height: 2.2rem;
+  background: var(--gold);
+}
 .hero-ctas {
   display: flex; gap: 1rem; flex-wrap: wrap;
   opacity: 0; animation: fadeUp 0.8s 0.8s forwards;
@@ -170,7 +217,7 @@ nav {
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
   gap: 0.75rem;
-  background: rgba(9,9,15,0.82);
+  background: rgba(18,21,32,0.78);
   backdrop-filter: blur(4px);
   transition: opacity 0.3s;
 }
@@ -304,8 +351,15 @@ nav {
   padding: 1.25rem 2.5rem; background: var(--bg3);
   border: 1px solid var(--line); border-top: none;
 }
-.carousel-dots { display: flex; gap: 0.5rem; }
-.dot { width: 2rem; height: 1px; background: var(--ink-soft); cursor: pointer; transition: background 0.2s, width 0.3s; }
+.carousel-dots { display: flex; gap: 0.55rem; padding: 0.4rem 0; }
+.dot {
+  width: 2rem; height: 4px;
+  background: var(--ink-soft);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s, width 0.3s, transform 0.2s;
+}
+.dot:hover { transform: translateY(-1px); }
 .dot.active { background: var(--gold); width: 3.5rem; }
 .carousel-btns { display: flex; gap: 0.6rem; }
 .carousel-btn {
